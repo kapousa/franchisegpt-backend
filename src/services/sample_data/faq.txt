@@ -1,0 +1,8 @@
+Q: What is FranchiseGPT?
+A: FranchiseGPT is a generative AI tool designed to analyze franchise opportunities and provide insights.
+
+Q: Who can use FranchiseGPT?
+A: Entrepreneurs, investors, and consultants who want to explore franchise options.
+
+Q: What industries are supported?
+A: Food & Beverage, Retail, Healthcare, Education, and Technology.

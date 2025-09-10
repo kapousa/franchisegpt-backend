@@ -1,0 +1,16 @@
+[
+  {
+    "brand": "Starbucks",
+    "industry": "Coffee",
+    "investment": "250,000 USD",
+    "royalty_fee": "7%",
+    "regions": ["USA", "Europe", "Middle East"]
+  },
+  {
+    "brand": "KFC",
+    "industry": "Fast Food",
+    "investment": "1,500,000 USD",
+    "royalty_fee": "5%",
+    "regions": ["Global"]
+  }
+]

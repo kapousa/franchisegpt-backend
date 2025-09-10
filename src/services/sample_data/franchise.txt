@@ -1,0 +1,4 @@
+FranchiseGPT is an AI-powered assistant that helps businesses expand into new markets.
+It provides detailed franchise opportunity analysis, including initial investment costs, royalty fees, and break-even projections.
+FranchiseGPT also offers competitor analysis, marketing strategies, and location recommendations.
+It supports multiple industries such as food & beverage, retail, and technology.
