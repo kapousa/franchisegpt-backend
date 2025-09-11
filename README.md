@@ -1,4 +1,4 @@
-# Local RAG Chatbot with Mistral
+# FranchiseGPT
 
 ## Setup
 
