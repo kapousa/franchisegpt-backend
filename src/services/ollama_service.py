@@ -1,7 +1,7 @@
 # ollama_service.py
 import os
 import ollama
-import google.generativeai as genai
+#import google.generativeai as genai
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,8 +16,9 @@ class OllamaService:
 
         # Configure Gemini if API key is provided
         if gemini_api_key:
-            genai.configure(api_key=gemini_api_key)
-            self.gemini_model = genai.GenerativeModel("gemini-1.5-pro")
+            #genai.configure(api_key=gemini_api_key)
+            #self.gemini_model = genai.GenerativeModel("gemini-1.5-pro")
+            pass
         else:
             self.gemini_model = None
 
