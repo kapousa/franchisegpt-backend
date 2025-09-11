@@ -27,7 +27,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # --- SQLite Configuration (SYNCHRONOUS SQLAlchemy - Unchanged) ---
-DATABASE_FILE = "tahlyl-local-dbe.db"
+DATABASE_FILE = "FMEGPT.db"
 DATABASE_URL = f"sqlite:///{DATABASE_FILE}"
 
 # Synchronous SQLAlchemy Engine

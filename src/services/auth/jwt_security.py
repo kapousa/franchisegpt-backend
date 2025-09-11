@@ -9,8 +9,8 @@ from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session # No need for make_transient here anymore
 from config import get_sqlite_db_sync
-from com.models.User import User as SQLUser # Your SQLAlchemy User model
-from com.schemas.user import TokenData
+from src.models.User import User as SQLUser # Your SQLAlchemy User model
+from src.schemas.User import TokenData
 from passlib.context import CryptContext
 
 load_dotenv()
