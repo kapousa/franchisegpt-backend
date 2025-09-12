@@ -8,6 +8,7 @@ from src.services.vector_store_service import VectorStoreService
 
 load_dotenv()
 MODEL_NAME = os.getenv("MODEL_NAME")
+ALLOWED_KEYWORDS = ["franchise", "franchising", "royalty", "franchise fee", "brand expansion", "territory", "franchise agreement"]
 
 
 class RAGService:
@@ -77,15 +78,18 @@ Standalone Question:"""
                     history_prompt += f"{msg['sender'].capitalize()}: {msg['content']}\n"
 
             prompt = f"""You are a helpful assistant. Here is the previous conversation history:
-{history_prompt}
+            {history_prompt}
 
-Answer the user's latest question using the provided context.
+            As a Franchise Consultant, you ONLY answer questions related to franchises, franchising, and business consulting.  
+            If the user asks something unrelated (e.g., about health, travel, coding, or personal topics), respond with exactly:
+            "I'm only specialized in giving franchise consulting answers."
 
-Context:
-{context_text}
+            Context:
+            {context_text}
 
-Question:
-{query}"""
+            Question:
+            {query}"""
+
             answer = self.ollama.generate_answer(prompt)
 
             if save and extra_docs_content:
