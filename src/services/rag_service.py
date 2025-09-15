@@ -22,26 +22,31 @@ class RAGService:
 
     async def _rephrase_query(self, query: str, chat_history: List[Dict]) -> str:
         """Uses the LLM to rephrase a follow-up question into a standalone query."""
-        if not chat_history:
-            return query
+        try:
+            if not chat_history:
+                return query
 
-        history_prompt = ""
-        for msg in chat_history:
-            history_prompt += f"{msg['sender'].capitalize()}: {msg['content']}\n"
+            history_prompt = ""
+            for msg in chat_history:
+                history_prompt += f"{msg['sender'].capitalize()}: {msg['content']}\n"
 
-        rephrase_prompt = f"""Given the following conversation and a follow-up question, rephrase the follow-up question to be a standalone question. This standalone question can then be used to perform a relevant search.
+            rephrase_prompt = f"""Given the following conversation and a follow-up question, rephrase the follow-up question to be a standalone question. This standalone question can then be used to perform a relevant search.
+    
+    Conversation History:
+    {history_prompt}
+    
+    Follow-up Question: {query}
+    
+    Standalone Question:"""
 
-Conversation History:
-{history_prompt}
+            rephrased_query = self.ollama.generate_answer(rephrase_prompt)
+            # ADD THIS PRINT STATEMENT
+            print(f"DEBUG: Rephrased Query is: '{rephrased_query.strip()}'")
+            return rephrased_query.strip()
 
-Follow-up Question: {query}
-
-Standalone Question:"""
-
-        rephrased_query = self.ollama.generate_answer(rephrase_prompt)
-        # ADD THIS PRINT STATEMENT
-        print(f"DEBUG: Rephrased Query is: '{rephrased_query.strip()}'")
-        return rephrased_query.strip()
+        except Exception as e:
+            # A more detailed error response can be helpful for debugging
+            return {"error": str(e)}, 500
 
     async def answer_with_user_docs(
             self,
