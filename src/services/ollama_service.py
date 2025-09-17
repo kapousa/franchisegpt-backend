@@ -33,14 +33,26 @@ class OllamaService:
         else:
             return self._generate_with_ollama(prompt)["message"]["content"]
 
-    def _generate_with_ollama(self, prompt: str) -> dict:
+    import ollama
+
+    def _generate_with_ollama(self, prompt: str, temperature: float = 0.7, top_k: int = 40, top_p: float = 0.9,
+                              repeat_penalty: float = 1.1, num_predict: int = 128) -> dict:
         """
-        Calls Ollama API.
-        Returns dict in Ollama format.
+        Calls Ollama API with configurable generation parameters.
+        Returns a dictionary in Ollama's format.
         """
+        options = {
+            'temperature': temperature,
+            #'num_predict': num_predict,
+            'top_k': top_k,
+            'top_p': top_p,
+            'repeat_penalty': repeat_penalty,
+        }
+
         response = ollama.chat(
             model=self.model,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
+            options=options,
         )
         return {"message": {"content": response["message"]["content"]}}
 

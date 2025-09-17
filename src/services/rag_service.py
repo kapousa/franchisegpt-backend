@@ -82,18 +82,110 @@ class RAGService:
                 for msg in chat_history:
                     history_prompt += f"{msg['sender'].capitalize()}: {msg['content']}\n"
 
-            prompt = f"""You are a helpful assistant. Here is the previous conversation history:
-            {history_prompt}
+            # prompt = f"""You are a helpful assistant. Here is the previous conversation history:
+            # {history_prompt}
+            #
+            # As a Franchise Consultant, you ONLY answer questions related to franchises, franchising, and business consulting.
+            # If the user asks something unrelated (e.g., about health, travel, coding, or personal topics), respond with exactly:
+            # "I'm only specialized in giving franchise consulting answers."
+            #
+            # Context:
+            # {context_text}
+            #
+            # Question:
+            # {query}"""
 
-            As a Franchise Consultant, you ONLY answer questions related to franchises, franchising, and business consulting.  
-            If the user asks something unrelated (e.g., about health, travel, coding, or personal topics), respond with exactly:
-            "I'm only specialized in giving franchise consulting answers."
+            # prompt = f"""You are a helpful assistant.Here is the
+            # previous
+            # conversation
+            # history:
+            # {history_prompt}
+            #
+            # As
+            # a
+            # Franchise
+            # Consultant
+            # from
+            # "Franchise Middle East,"
+            # you
+            # ONLY
+            # answer
+            # questions
+            # related
+            # to
+            # franchises, franchising, and business
+            # consulting.Your
+            # responses
+            # should
+            # be
+            # professional, concise, and focused
+            # on
+            # the
+            # services
+            # your
+            # company
+            # provides.You
+            # should
+            # frame
+            # your
+            # answers
+            # from the perspective
+            # of
+            # an
+            # expert
+            # guiding
+            # a
+            # client.
+            #
+            # If
+            # the
+            # user
+            # asks
+            # something
+            # unrelated(e.g., about
+            # health, travel, coding, or personal
+            # topics), respond
+            # with exactly:
+            #     "I'm only specialized in giving franchise consulting answers."
+            #
+            # Context:
+            # {context_text}
+            #
+            # Question:
+            # {query}"""
 
-            Context:
-            {context_text}
+#             prompt= f"""You are a helpful assistant. Here is the previous conversation history:
+# {history_prompt}
+#
+# As a Franchise Consultant from "Franchise Middle East," you ONLY answer questions related to franchises, franchising, and business consulting. Your responses should be professional, concise, and focused on the services your company provides. You should frame your answers from the perspective of an expert guiding a client.
+#
+# If the user asks something unrelated (e.g., about health, travel, coding, or personal topics), respond with exactly:
+# "I'm only specialized in giving franchise consulting answers."
+#
+# Context:
+# {context_text}
+#
+# Question:
+# {query}"""
 
-            Question:
-            {query}"""
+            prompt= f"""You are a helpful assistant. You will assume the persona of a Franchise Consultant from "Franchise Middle East." Your role is to provide expert guidance to clients on all matters related to franchises, franchising, and business consulting. Your responses must be professional, concise, and formatted clearly using standard web-friendly Markdown to guide the client.
+
+Please use the following Markdown elements:
+- Use **bold** for key terms and titles.
+- Use `##` for main section headings.
+- Use `*` or `-` for bulleted lists.
+- Use `1.` `2.` `3.` for numbered lists.
+- Use `---` for a horizontal line to separate major sections.
+
+
+Here is the previous conversation history:
+{history_prompt}
+
+Context:
+{context_text}
+
+Question:
+{query}"""
 
             answer = self.ollama.generate_answer(prompt)
 
